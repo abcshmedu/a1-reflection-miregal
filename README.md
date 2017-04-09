@@ -1,4 +1,3 @@
 # a1-reflection-miregal
 ## Authors
-Tobias Weller
-Elias Porcio
+Tobias Weller, Elias Porcio
