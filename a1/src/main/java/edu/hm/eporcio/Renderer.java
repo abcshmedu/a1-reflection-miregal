@@ -26,11 +26,12 @@ public class Renderer {
 	 * @throws InvocationTargetException
 	 * @throws ClassNotFoundException
 	 */
-	public String render() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ClassNotFoundException{
+	public String render() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException{
 		
 		String result = "";
 		
 		Class<?> toRender = obj.getClass();
+		String objectClass = "Instance of " + obj.getClass().getName().toString() + ":\n";
 		Field[] fields = toRender.getFields();
 		for (Field field : fields) {
 			if (field.getAnnotation(edu.hm.eporcio.RenderMe.class) != null) {
@@ -44,10 +45,9 @@ public class Renderer {
 					value = fieldContent.toString();
 				}
 				
-				result = result + field.getName() + " (" + field.getType() + ") " + value + "\n";
+				result = result + field.getName() + " (Type " + field.getType().getName() + "): " + value + "\n";
 			}
 		}
-		
-		return result;
-	}	
+		return objectClass + result;
+	}
 }
